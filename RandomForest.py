@@ -67,7 +67,7 @@ datafile = 'Data_model_construction_YuDengLab'
 # foldername = 'Data_EVMP'
 # datafile = 'Data_model_testing_EVMP'
 
-n = 10  # train n times
+n = 20  # train n times
 score_list = []
 for i in range(n):
     print(f'>>>>>Training and testing trial {i+1}/{n} ...')
@@ -102,17 +102,18 @@ for i in range(n):
     plt.ylabel('Predict')
     plt.legend()
 
-    # plt.savefig(''+str(foldername)+'/Regression_plot/Regression_'
-    #             + ''+str(foldername)+'_'+str(i+1)+'.png')
+    plt.savefig(''+str(foldername)+'/Regression_plot/Regression_'
+                + ''+str(foldername)+'_'+str(i+1)+'.png')
 print('\n----------End of trials----------')
 
 trial_num = np.arange(1, n+1, 1)
 score_mean = np.mean(score_list)
 score_std = np.std(score_list)
 plt.figure('R2 distribution')
-plt.plot(trial_num, np.zeros(len(trial_num))+score_mean, '-', lw=5, color='orange', label='Mean')
+plt.plot(trial_num, np.zeros(len(trial_num))+score_mean, '-', lw=5, color='orange',
+         label='Mean = '+str(score_mean)+'')
 plt.fill_between(trial_num, score_mean-score_std, score_mean+score_std, color='grey',
-                 alpha=0.3, linewidth=0, label='Std')
+                 alpha=0.3, linewidth=0, label='Std = '+str(score_std)+'')
 plt.plot(trial_num, score_list, 'o', ms=5, color='green', label='R2 score')
 plt.xlabel('Trial number')
 plt.ylabel('R2 score')
