@@ -55,14 +55,14 @@ def f_1(x, A, B):
     return A * x + B
 
 
-# foldername = 'Data_YuDengLab/'
-foldername = 'Data_EVMP/'
-# datafile = 'Data_model_construction_YuDengLab'
-datafile = 'Data_model_testing_EVMP'
+foldername = 'Data_YuDengLab'
+datafile = 'Data_model_construction_YuDengLab'
+# foldername = 'Data_EVMP'
+# datafile = 'Data_model_testing_EVMP'
 
 n = 20  # train n times
 for i in range(n):
-    train_feat, train_id = load_data(''+str(foldername)+''+str(datafile)+'.csv')
+    train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
     
 
     normalized_test_data = (train_feat - np.mean(train_feat) / np.std(train_feat))
@@ -92,4 +92,4 @@ for i in range(n):
     plt.ylabel('Predict')
     plt.legend()
 
-    plt.savefig(''+str(foldername)+'Regression_plot/Regression' + str(i+1) + '.png')
+    plt.savefig(''+str(foldername)+'/Regression_plot/Regression'+str(foldername)+'_'+str(i+1)+'.png')
