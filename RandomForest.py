@@ -2,7 +2,7 @@ import numpy as np
 import math
 from sklearn.metrics import r2_score
 import random
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from scipy import optimize
@@ -33,8 +33,8 @@ def load_data(filename):
                 elif a == 'B':
                     x_l.append(0)
                 else:
-                    raise ValueError('The '+str(k)+'th letter '+str(j)+'th sequence consists'
-                                     + ' a letter other than A G T C B')
+                    raise ValueError('The '+str(k)+'th letter '+str(j)+'th sequence'
+                                     + ' consists a letter other than A G T C B')
                 k += 1
             x_l = np.array(x_l)
             data.append(x_l)
@@ -67,7 +67,7 @@ datafile = 'Data_model_construction_YuDengLab'
 # foldername = 'Data_EVMP'
 # datafile = 'Data_model_testing_EVMP'
 
-n = 20  # train n times
+n = 50  # train n times
 score_list = []
 for i in range(n):
     print(f'>>>>> Training and testing trial {i+1}/{n} ...')
@@ -79,12 +79,16 @@ for i in range(n):
                                                         test_size=0.1, random_state=0)
 
     regr = RandomForestRegressor(n_estimators=70)
+    cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=5).mean()
+    print('      Mean score after 5 cross validations: %.4f' %cross_val)
 
     regr.fit(X_train, y_train)
     pred = regr.predict(X_test)
     pred2 = regr.predict(X_train)
     score = r2_score(y_test, pred)
+
     score_list.append(score)
+
     plt.rc('font', family='Times New Roman')
 
     # regression plot
@@ -119,5 +123,6 @@ plt.xticks(trial_num[int(n/5)-1::int(n/5)])
 plt.xlabel('Trial number')
 plt.ylabel('R2 score')
 plt.legend()
+
 plt.savefig(''+str(foldername)+'/R2_distribution_of_'+str(n)+'_trials_'
             + ''+str(foldername)+'.png')
