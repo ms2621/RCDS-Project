@@ -14,24 +14,30 @@ def load_data(filename):
     data = []
     with open(filename, 'r') as f:
         file = f.readlines()
+        j = 1
         for h in file:
             line = h.strip().split(',')
             x_l = [math.log(float(line[0]), 10)]  # take log of the fluorescence value
 
             # convert string of sequences into numbers
+            k = 1
             for a in line[1]:
                 if a == 'A':
                     x_l.append(1)
-                if a == 'G':
+                elif a == 'G':
                     x_l.append(2)
-                if a == 'T':
+                elif a == 'T':
                     x_l.append(3)
-                if a == 'C':
+                elif a == 'C':
                     x_l.append(4)
-                if a == 'B':
+                elif a == 'B':
                     x_l.append(0)
+                else:
+                    raise ValueError('The '+str(k)+'th letter '+str(j)+'th sequence consists a letter other than A G T C B')
+                k += 1
             x_l = np.array(x_l)
             data.append(x_l)
+            j += 1
     
     # randomise the data order
     random.shuffle(data)
@@ -55,17 +61,16 @@ def f_1(x, A, B):
     return A * x + B
 
 
-foldername = 'Data_YuDengLab'
-datafile = 'Data_model_construction_YuDengLab'
-# foldername = 'Data_EVMP'
-# datafile = 'Data_model_testing_EVMP'
+# foldername = 'Data_YuDengLab'
+# datafile = 'Data_model_construction_YuDengLab'
+foldername = 'Data_EVMP'
+datafile = 'Data_model_testing_EVMP'
 
 n = 20  # train n times
 for i in range(n):
     train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
-    
 
-    normalized_test_data = (train_feat - np.mean(train_feat) / np.std(train_feat))
+    normalized_test_data = train_feat - np.mean(train_feat) / np.std(train_feat)
     X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id,
                                                         test_size=0.1, random_state=0)
 
