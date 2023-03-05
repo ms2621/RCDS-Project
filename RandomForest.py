@@ -2,7 +2,7 @@ import numpy as np
 import math
 from sklearn.metrics import r2_score
 import random
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 from scipy import optimize
