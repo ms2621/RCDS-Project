@@ -72,6 +72,7 @@ for i in range(n):
     score = r2_score(y_test, pred)
     plt.rc('font', family='Times New Roman')
 
+    # regression plot
     plt.figure()
     A1, B1 = optimize.curve_fit(f_1, y_test, pred)[0]
     x1 = np.arange(min(y_train), max(y_train), 0.01)
