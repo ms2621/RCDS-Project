@@ -15,10 +15,12 @@ During training, the output log is like the following.
 ----------End of trials----------
 ```
 The example regression plots are in the *Regression_plot* subfolder of the relavent data folder (e.g. in *Data_YuDengLab* folder).
-[![Regression plot](/Data_YuDengLab/Regression_plot/Regression_Data_YuDengLab_1.png "Example regression plot trained with *Data_model_construction_YuDengLab.csv* data.")]
+
+![Regression plot](/Data_YuDengLab/Regression_plot/Regression_Data_YuDengLab_1.png "Example regression plot trained with *Data_model_construction_YuDengLab.csv* data.")
 
 The distribution of R2 scores for all trials will be stored directly in the relavent data folder (e.g. in *Data_YuDengLab* folder).
-[![Regression plot](/Data_YuDengLab/R2_distribution_of_20_trials_Data_YuDengLab.png "Example R2 distribution plot trained 20 times with *Data_model_construction_YuDengLab.csv* data.")]
+
+![R2 distribution plot](/Data_YuDengLab/R2_distribution_of_20_trials_Data_YuDengLab.png "Example R2 distribution plot trained 20 times with *Data_model_construction_YuDengLab.csv* data.")
 
 ## Reference
 #### YuDengLab
