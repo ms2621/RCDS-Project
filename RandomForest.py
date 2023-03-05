@@ -62,13 +62,16 @@ def f_1(x, A, B):
     return A * x + B
 
 
-# foldername = 'Data_YuDengLab'
-# datafile = 'Data_model_construction_YuDengLab'
-foldername = 'Data_EVMP'
-datafile = 'Data_model_testing_EVMP'
+foldername = 'Data_YuDengLab'
+datafile = 'Data_model_construction_YuDengLab'
+# foldername = 'Data_EVMP'
+# datafile = 'Data_model_testing_EVMP'
 
-n = 20  # train n times
+n = 10  # train n times
+score_list = []
 for i in range(n):
+    print(f'>>>>>Training and testing trial {i+1}/{n} ...')
+
     train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
 
     normalized_test_data = train_feat - np.mean(train_feat) / np.std(train_feat)
@@ -81,6 +84,7 @@ for i in range(n):
     pred = regr.predict(X_test)
     pred2 = regr.predict(X_train)
     score = r2_score(y_test, pred)
+    score_list.append(score)
     plt.rc('font', family='Times New Roman')
 
     # regression plot
@@ -98,5 +102,20 @@ for i in range(n):
     plt.ylabel('Predict')
     plt.legend()
 
-    plt.savefig(''+str(foldername)+'/Regression_plot/Regression'
-                + ''+str(foldername)+'_'+str(i+1)+'.png')
+    # plt.savefig(''+str(foldername)+'/Regression_plot/Regression_'
+    #             + ''+str(foldername)+'_'+str(i+1)+'.png')
+print('\n----------End of trials----------')
+
+trial_num = np.arange(1, n+1, 1)
+score_mean = np.mean(score_list)
+score_std = np.std(score_list)
+plt.figure('R2 distribution')
+plt.plot(trial_num, np.zeros(len(trial_num))+score_mean, '-', lw=5, color='orange', label='Mean')
+plt.fill_between(trial_num, score_mean-score_std, score_mean+score_std, color='grey',
+                 alpha=0.3, linewidth=0, label='Std')
+plt.plot(trial_num, score_list, 'o', ms=5, color='green', label='R2 score')
+plt.xlabel('Trial number')
+plt.ylabel('R2 score')
+plt.legend()
+plt.savefig(''+str(foldername)+'/R2_distribution_of_'+str(n)+'_trials_'
+            + ''+str(foldername)+'.png')
