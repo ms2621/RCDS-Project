@@ -33,7 +33,8 @@ def load_data(filename):
                 elif a == 'B':
                     x_l.append(0)
                 else:
-                    raise ValueError('The '+str(k)+'th letter '+str(j)+'th sequence consists a letter other than A G T C B')
+                    raise ValueError('The '+str(k)+'th letter '+str(j)+'th sequence consists'
+                                     + ' a letter other than A G T C B')
                 k += 1
             x_l = np.array(x_l)
             data.append(x_l)
@@ -97,4 +98,5 @@ for i in range(n):
     plt.ylabel('Predict')
     plt.legend()
 
-    plt.savefig(''+str(foldername)+'/Regression_plot/Regression'+str(foldername)+'_'+str(i+1)+'.png')
+    plt.savefig(''+str(foldername)+'/Regression_plot/Regression'
+                + ''+str(foldername)+'_'+str(i+1)+'.png')
