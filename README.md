@@ -3,6 +3,19 @@
 ## Quick Intro
 We are Interdisciplinary Computing Project Group 4 from the Imperial College I-Explore course. The aim of our project is to use a Random Forest model to predict promoter strength in DNA. This is an interdisciplinary project that bridges the fields of biochemistry and computing. Our team consists of four members who are second-year biochemists and physicists at Imperial College London.
 
+## Training
+During training, the output log is like the following.
+```
+>>>>>Training and testing trial 1/10 ...
+>>>>>Training and testing trial 2/10 ...
+>>>>>Training and testing trial 3/10 ...
+.....
+>>>>>Training and testing trial 10/10 ...
+
+----------End of trials----------
+```
+The example regression plots are in the *Regression_plot* subfolder of the relavent data folder (e.g. in *Data_YuDengLab* folder), and the distribution of R2 scores for all trials will be stored directly in the relavent data folder (e.g. in *Data_YuDengLab* folder).
+
 ## Reference
 #### YuDengLab
 https://github.com/YuDengLAB/Predictive-the-correlation-between-promoter-base-and-intensity-through-models-comparing
