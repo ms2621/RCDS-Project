@@ -16,8 +16,9 @@ def load_data(filename):
         file = f.readlines()
         for h in file:
             line = h.strip().split(',')
-            #
-            x_l = [math.log(float(line[0]), 10)]
+            x_l = [math.log(float(line[0]), 10)]  # take log of the fluorescence value
+
+            # convert string of sequences into numbers
             for a in line[1]:
                 if a == 'A':
                     x_l.append(1)
@@ -31,25 +32,37 @@ def load_data(filename):
                     x_l.append(0)
             x_l = np.array(x_l)
             data.append(x_l)
+    
+    # randomise the data order
     random.shuffle(data)
+
+    # split data array into x values and y values for training and testing
     for t in data:
-        train_feat.append(t[1:])
-        train_id.append(t[0])
+        # log(fluorescence)
+        train_feat.append(t[1:])  # will be splitted into x_train and x_test in train_test_split
+
+        # sequence in numbers
+        train_id.append(t[0])  # will be splitted into y_train and y_test in train_test_split
+
     train_feat = np.array(train_feat)
     train_id = np.array(train_id)
+
     return train_feat, train_id
 
 
-#
-
+# linear fit
 def f_1(x, A, B):
     return A * x + B
 
 
-for i in range(20):
-    train_feat, train_id = load_data('train0930q.csv')
+# train n times
+n = 20
+for i in range(n):
+    train_feat, train_id = load_data('Data_model_construction.csv')
+
     normalized_test_data = (train_feat - np.mean(train_feat) / np.std(train_feat))
-    X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id, test_size=0.1, random_state=0)
+    X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id,
+                                                        test_size=0.1, random_state=0)
 
     regr = RandomForestRegressor(n_estimators=70)
 
@@ -58,6 +71,7 @@ for i in range(20):
     pred2 = regr.predict(X_train)
     score = r2_score(y_test, pred)
     plt.rc('font', family='Times New Roman')
+
     plt.figure()
     A1, B1 = optimize.curve_fit(f_1, y_test, pred)[0]
     x1 = np.arange(min(y_train), max(y_train), 0.01)
@@ -71,4 +85,5 @@ for i in range(20):
     plt.xlabel('Origin')
     plt.ylabel('Predict')
     plt.legend()
-    plt.savefig(str(i) + '.pdf')
+
+    plt.savefig('Regression_plot/Regression' + str(i+1) + '.png')
