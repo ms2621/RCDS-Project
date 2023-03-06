@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import random
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestRegressor
 
@@ -62,12 +62,12 @@ def f_1(x, A, B):
 
 foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
-# foldername = 'Data_EVMP'
-# datafile = 'Data_model_testing_EVMP'
-
 
 score_mean = []
+
+# range of n_estimators values for testing
 trial_values = np.arange(120, 150, 2)
+
 n = 5  # train n times for each n_estimators value
 
 plt.figure(f'Training with {len(trial_values)} n_estimators values')
