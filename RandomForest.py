@@ -64,23 +64,23 @@ def f_1(x, A, B):
 
 foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
-# foldername = 'Data_EVMP'
-# datafile = 'Data_model_testing_EVMP'
 
-n = 50  # train n times
+n = 10  # train n times
+cross_val_num = 5  # number of cross validation
 score_list = []
 for i in range(n):
     print(f'>>>>> Training and testing trial {i+1}/{n} ...')
 
     train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
 
-    normalized_test_data = train_feat - np.mean(train_feat) / np.std(train_feat)
+    normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
+                                         / np.std(np.concatenate(train_feat)))
     X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id,
                                                         test_size=0.1, random_state=0)
 
     regr = RandomForestRegressor(n_estimators=70)
-    cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=5).mean()
-    print('      Mean score after 5 cross validations: %.4f' %cross_val)
+    cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=cross_val_num).mean()
+    print(f'      Mean score after {cross_val_num} cross validations: {cross_val:.4f}')
 
     regr.fit(X_train, y_train)
     pred = regr.predict(X_test)
@@ -106,8 +106,8 @@ for i in range(n):
     plt.ylabel('Predict')
     plt.legend()
 
-    # plt.savefig(''+str(foldername)+'/Regression_plot/Regression_'
-    #             + ''+str(foldername)+'_'+str(i+1)+'.png')
+    plt.savefig(''+str(foldername)+'/Regression_plot_single_trial/Regression_'
+                + ''+str(foldername)+'_'+str(i+1)+'.png')
 print('\n----------End of trials----------')
 
 trial_num = np.arange(1, n+1, 1)
