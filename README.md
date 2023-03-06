@@ -6,7 +6,13 @@ We are Interdisciplinary Computing Project Group 4 from the Imperial College I-E
 ## File Structure
 The `Data_YuDengLab/` folder contains the sample data from **YuDengLab** as referenced below.
 
-The `No_cross_validation/` folder in the `Data_YuDengLab/` folder contains the sample plots showing R2 distribution after certain number of trials. The R2 values shown on the plots are obtained *without* performing cross validation when training the RF model. On the other hand, the R2 values of plots in the `With_cross_validation/` folder are obtained *with* performing cross validation when training the RF model.
+Inside `Data_YuDengLab/` folder:
+
+* The `Regression_plot_single_trial/` folder contains the plots showing the outcome of the RF model for both the training and testing data. It also fits the testing data distribution with a straight line and shows the R2 value. More details below.
+
+* The `R2_distribution_plot/` folder contains the plots showing how R2 varies when training the model for several times. More details below.
+
+* The `Optimisation_n_estimators/` folder contains the plots generated when optimising *n_estimators*. More details below.
 
 ## Training
 During training, the output log is like the following.
@@ -24,6 +30,7 @@ During training, the output log is like the following.
 
 ----------End of trials----------
 ```
+
 The regression plots are in the `Regression_plot_single_trial/` subfolder of the relavent data folder (e.g. `Data_YuDengLab/` folder). An example regression plot using `Data_model_construction_YuDengLab.csv` data is shown below.
 
 ![Regression plot](/Data_YuDengLab/Regression_plot_single_trial/Regression_Data_YuDengLab_2.png "Example regression plot trained with *Data_model_construction_YuDengLab.csv* data.")
