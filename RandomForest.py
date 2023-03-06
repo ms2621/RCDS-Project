@@ -36,6 +36,15 @@ def load_data(filename):
                     raise ValueError('The '+str(k)+'th letter '+str(j)+'th sequence'
                                      + ' consists a letter other than A G T C B')
                 k += 1
+
+            # obtaining the frequency that certain sequence exits
+            start_index = 0
+            count_tata = 0
+            while line[1].find('TATA', start_index) != -1:
+                count_tata += 1
+                start_index = line[1].find('TATA', start_index) + 4
+            x_l.append(count_tata)
+
             x_l = np.array(x_l)
             data.append(x_l)
             j += 1
@@ -106,8 +115,8 @@ for i in range(n):
     plt.ylabel('Predict')
     plt.legend()
 
-    plt.savefig(''+str(foldername)+'/Regression_plot_single_trial/Regression_'
-                + ''+str(foldername)+'_'+str(i+1)+'.png')
+    # plt.savefig(''+str(foldername)+'/Regression_plot_single_trial/Regression_'
+    #             + ''+str(foldername)+'_'+str(i+1)+'.png')
 print('\n----------End of trials----------')
 
 trial_num = np.arange(1, n+1, 1)
