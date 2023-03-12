@@ -1,7 +1,7 @@
 # Prediction of Promoter Strength with Machine Learning (Random Forest Model)
 
 ## Quick Intro
-We are Interdisciplinary Computing Project Group 4 from the Imperial College I-Explore course. The aim of our project is to use a Random Forest (RF) model to predict promoter strength in DNA. This is an interdisciplinary project that bridges the fields of biochemistry and computing. Our team consists of four members who are second-year biochemists and physicists at Imperial College London.
+We are Interdisciplinary Computing Project Group 4 from the Imperial College I-Explore course. The aim of our project is to use a Random Forest (RF) model to predict promoter strength in DNA. Promoters are a key sequence feature found in eukaryotic genomes, involved in the regulation of expression of genes found downstream of said promoter. Regulation occurs through binding of proteins called transcription factors which bind at distinct, conserved sequence motifs that can be identified with predictive software. Prediction of promoters as well as promoter regulatory strength is key for biotechnology for the production of novel synthetic promoters for example. This is an interdisciplinary project that bridges the fields of biochemistry and computing. Our team consists of four members who are second-year biochemists and physicists at Imperial College London.
 
 ## File Structure
 The `Data_YuDengLab/` folder contains the sample data from **YuDengLab** as referenced below.
