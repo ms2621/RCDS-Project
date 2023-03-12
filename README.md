@@ -56,3 +56,5 @@ https://github.com/YuDengLAB/Predictive-the-correlation-between-promoter-base-an
 
 #### EVMP
 https://github.com/Tiny-Snow/EVMP
+
+The data license is free without registration.
