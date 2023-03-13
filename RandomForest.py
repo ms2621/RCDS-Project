@@ -41,71 +41,197 @@ def load_data(filename):
             # obtaining the frequency that TATA sequence exits
             start_index = 0
             count = 0
-            while line[1].find('TATAAA', start_index) != -1:
+            string = 'TATAAA'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('TATAAA', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
 
             # obtaining the frequency that BRE sequence exits
             start_index = 0
             count = 0
-            while line[1].find('GGGCGCC', start_index) != -1:
+            string = 'GGGCGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('GGGCGCC', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
             start_index = 0
             count = 0
-            while line[1].find('CCACGCC', start_index) != -1:
+            string = 'GCGCGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('CCACGCC', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GGACGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GCACGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'CCACGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'CCGCGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'CGACGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'CGGCGCC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
 
             # obtaining the frequency that DPE sequence exits
             start_index = 0
             count = 0
-            while line[1].find('AGACG', start_index) != -1:
+            string = 'AGACG'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('AGACG', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
             start_index = 0
             count = 0
-            while line[1].find('AGACA', start_index) != -1:
+            string = 'AGTTG'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('AGACA', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
             start_index = 0
             count = 0
-            while line[1].find('AGACC', start_index) != -1:
+            string = 'AGACA'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('AGACC', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
             start_index = 0
             count = 0
-            while line[1].find('GGTTG', start_index) != -1:
+            string = 'AGTTA'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('GGTTG', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
             start_index = 0
             count = 0
-            while line[1].find('GGTTA', start_index) != -1:
+            string = 'AGACC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('GGTTA', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
             start_index = 0
             count = 0
-            while line[1].find('GGTTC', start_index) != -1:
+            string = 'AGTTC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
                 count += 1
-                start_index = line[1].find('GGTTC', start_index) + 4
+                start_index = line[1].find(string, start_index) + str_len
             x_l.append(count)
 
+            start_index = 0
+            count = 0
+            string = 'GGACG'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GGTTG'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GGACA'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GGTTA'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GGACC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            string = 'GGTTC'  # modify the motif here
+            str_len = len(string)  # length of the motif
+            while line[1].find(string, start_index) != -1:
+                count += 1
+                start_index = line[1].find(string, start_index) + str_len
+            x_l.append(count)
+           
             x_l = np.array(x_l)
             data.append(x_l)
             j += 1
@@ -136,8 +262,10 @@ foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
 
 n = 15  # train n times
-cross_val_num = 5  # number of cross validation
 score_list = []
+
+cro_val_indicator = False  # whether carrying out cross validation or not
+cross_val_num = 5  # number of cross validation
 
 train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
 normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
@@ -151,8 +279,9 @@ for i in range(n):
 
     regr = RandomForestRegressor(n_estimators=70)
 
-    # cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=cross_val_num).mean()
-    # print(f'      Mean score after {cross_val_num} cross validations: {cross_val:.4f}')
+    if cro_val_indicator == True:
+        cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=cross_val_num).mean()
+        print(f'      Mean score after {cross_val_num} cross validations: {cross_val:.4f}')
 
     regr.fit(X_train, y_train)
     pred = regr.predict(X_test)
