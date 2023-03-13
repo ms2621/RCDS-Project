@@ -37,13 +37,74 @@ def load_data(filename):
                                      + ' consists a letter other than A G T C B')
                 k += 1
 
-            # obtaining the frequency that certain sequence exits
+
+            # obtaining the frequency that TATA sequence exits
             start_index = 0
-            count_tata = 0
-            while line[1].find('TATA', start_index) != -1:
-                count_tata += 1
-                start_index = line[1].find('TATA', start_index) + 4
-            x_l.append(count_tata)
+            count = 0
+            while line[1].find('TATAAA', start_index) != -1:
+                count += 1
+                start_index = line[1].find('TATAAA', start_index) + 4
+            x_l.append(count)
+
+
+            # obtaining the frequency that BRE sequence exits
+            start_index = 0
+            count = 0
+            while line[1].find('GGGCGCC', start_index) != -1:
+                count += 1
+                start_index = line[1].find('GGGCGCC', start_index) + 4
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            while line[1].find('CCACGCC', start_index) != -1:
+                count += 1
+                start_index = line[1].find('CCACGCC', start_index) + 4
+            x_l.append(count)
+
+
+            # obtaining the frequency that DPE sequence exits
+            start_index = 0
+            count = 0
+            while line[1].find('AGACG', start_index) != -1:
+                count += 1
+                start_index = line[1].find('AGACG', start_index) + 4
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            while line[1].find('AGACA', start_index) != -1:
+                count += 1
+                start_index = line[1].find('AGACA', start_index) + 4
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            while line[1].find('AGACC', start_index) != -1:
+                count += 1
+                start_index = line[1].find('AGACC', start_index) + 4
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            while line[1].find('GGTTG', start_index) != -1:
+                count += 1
+                start_index = line[1].find('GGTTG', start_index) + 4
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            while line[1].find('GGTTA', start_index) != -1:
+                count += 1
+                start_index = line[1].find('GGTTA', start_index) + 4
+            x_l.append(count)
+
+            start_index = 0
+            count = 0
+            while line[1].find('GGTTC', start_index) != -1:
+                count += 1
+                start_index = line[1].find('GGTTC', start_index) + 4
+            x_l.append(count)
 
             x_l = np.array(x_l)
             data.append(x_l)
@@ -74,22 +135,24 @@ def f_1(x, A, B):
 foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
 
-n = 10  # train n times
+n = 15  # train n times
 cross_val_num = 5  # number of cross validation
 score_list = []
+
+train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
+normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
+                                        / np.std(np.concatenate(train_feat)))
+
 for i in range(n):
     print(f'>>>>> Training and testing trial {i+1}/{n} ...')
 
-    train_feat, train_id = load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
-
-    normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
-                                         / np.std(np.concatenate(train_feat)))
-    X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id,
+    X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id, shuffle=True,
                                                         test_size=0.1, random_state=0)
 
     regr = RandomForestRegressor(n_estimators=70)
-    cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=cross_val_num).mean()
-    print(f'      Mean score after {cross_val_num} cross validations: {cross_val:.4f}')
+
+    # cross_val = cross_val_score(regr, normalized_test_data, train_id, cv=cross_val_num).mean()
+    # print(f'      Mean score after {cross_val_num} cross validations: {cross_val:.4f}')
 
     regr.fit(X_train, y_train)
     pred = regr.predict(X_test)
@@ -122,11 +185,16 @@ print('\n----------End of trials----------')
 trial_num = np.arange(1, n+1, 1)
 score_mean = np.mean(score_list)
 score_std = np.std(score_list)
+if score_std < 0.01:
+    score_std_label = 'Std < 0.01'
+else:
+    score_std_label = f'Std = {score_std:.2f}'
+
 plt.figure('R2 distribution')
 plt.plot(trial_num, np.zeros(len(trial_num))+score_mean, '-', lw=5, color='orange',
          label=f'Mean = {score_mean:.2f}')
 plt.fill_between(trial_num, score_mean-score_std, score_mean+score_std, color='grey',
-                 alpha=0.3, linewidth=0, label=f'Std = {score_std:.2f}')
+                 alpha=0.3, linewidth=0, label=score_std_label)
 plt.plot(trial_num, score_list, 'o', ms=5, color='green', label='R2 score')
 plt.xticks(trial_num[int(n/5)-1::int(n/5)])
 plt.xlabel('Trial number')
