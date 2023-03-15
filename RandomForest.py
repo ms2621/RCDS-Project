@@ -25,6 +25,8 @@ score_list = []
 cro_val_indicator = False  # whether carrying out cross validation or not
 cross_val_num = 5  # number of cross validation
 
+plot_individual = False  # whether plotting regression plot for each trial or not
+
 train_feat, train_id = ld.load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
 normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
                                      / np.std(np.concatenate(train_feat)))
@@ -49,22 +51,24 @@ for i in range(n):
     score_list.append(score)
 
     # regression plot
-    plt.figure()
-    A1, B1 = optimize.curve_fit(f_1, y_test, pred)[0]
-    x1 = np.arange(min(y_train), max(y_train), 0.01)
-    y1 = A1 * x1 + B1
-    plt.plot(x1, y1, c="green")
-    plt.title('R2=' + str(round(score, 2)))
-    plt.scatter(y_train[:1000], pred2[:1000], s=5, c="pink", marker='o', label="Train")
-    plt.scatter(y_test[:200], pred[:200], s=5, c="b", marker='x', label="Test")
-    plt.xlim(1, 5)
-    plt.ylim(1, 5)
-    plt.xlabel('Origin')
-    plt.ylabel('Predict')
-    plt.legend()
+    if plot_individual == True:
+        plt.figure()
+        A1, B1 = optimize.curve_fit(f_1, y_test, pred)[0]
+        x1 = np.arange(min(y_train), max(y_train), 0.01)
+        y1 = A1 * x1 + B1
+        plt.plot(x1, y1, c="green")
+        plt.title('R2=' + str(round(score, 2)))
+        plt.scatter(y_train[:1000], pred2[:1000], s=5, c="pink", marker='o', label="Train")
+        plt.scatter(y_test[:200], pred[:200], s=5, c="b", marker='x', label="Test")
+        plt.xlim(1, 5)
+        plt.ylim(1, 5)
+        plt.xlabel('Origin')
+        plt.ylabel('Predict')
+        plt.legend()
 
-    # plt.savefig(''+str(foldername)+'/Regression_plot_single_trial/Regression_'
-    #             + ''+str(foldername)+'_'+str(i+1)+'.png')
+        plt.savefig(''+str(foldername)+'/Regression_plot_single_trial/Regression_'
+                    + ''+str(foldername)+'_'+str(i+1)+'.png')
+
 print('\n----------End of trials----------')
 
 
