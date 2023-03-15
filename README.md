@@ -6,6 +6,8 @@ We are Interdisciplinary Computing Project Group 4 from the Imperial College I-E
 
 
 ## File Structure
+The main module for RF model is `Random_Forest_main.py`.
+
 The `Data_YuDengLab/` folder contains the sample data from **YuDengLab** as referenced below.
 
 Inside `Data_YuDengLab/` folder:
