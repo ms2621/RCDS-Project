@@ -1,7 +1,4 @@
-import math
-import random
 import numpy as np
-from scipy import optimize
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 from sklearn.model_selection import train_test_split, cross_val_score
