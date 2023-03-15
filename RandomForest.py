@@ -19,7 +19,7 @@ def f_1(x, A, B):
 foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
 
-n = 15  # train n times
+n = 100  # train n times
 score_list = []
 
 cro_val_indicator = False  # whether carrying out cross validation or not
@@ -89,4 +89,4 @@ plt.ylabel('R2 score')
 plt.legend()
 
 plt.savefig(''+str(foldername)+'/R2_distribution_of_'+str(n)+'_trials_'
-            + ''+str(foldername)+'.png')
+            + ''+str(foldername)+'_with_all_4_motifs.png')
