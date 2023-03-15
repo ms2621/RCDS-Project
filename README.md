@@ -20,6 +20,42 @@ Inside `Data_YuDengLab/` folder:
 
 
 ## Training
+
+### Isoform Generation and Data Tokenisation
+The `Generate_motif.py` module creates all the isoforms of four commonly found human motifs and also counts the number of motifs present in the inputting sequence.
+
+The motifs we used were
+* TATA box
+* TFIIB Recognition Element (BRE)
+* Downstream Promoter Element (DPE)
+* Initiator element (Inr)
+
+The `Load_data.py` module tokenises the DNA sequences and also adds the counts for different motifs to the training data.
+
+### Data directory and indicators
+The directory of the data file can be changed in
+```
+foldername = 'Data_YuDengLab'
+datafile = 'Data_model_construction_YuDengLab'
+```
+
+The number of trials that training is performed is controlled with
+```
+n = 100  # train n times
+```
+
+The cross validation related parameters are
+```
+cro_val_indicator = False  # whether carrying out cross validation or not
+cross_val_num = 5  # number of cross validation
+```
+
+The plotting of the regression plot for each training trial can be modified with
+```
+plot_individual = False  # whether plotting regression plot for each trial or not
+```
+
+### Training Log
 During training, the output log is like the following.
 
 ```
@@ -36,13 +72,25 @@ During training, the output log is like the following.
 ----------End of trials----------
 ```
 
-The regression plots are in the `Regression_plot_single_trial/` subfolder of the relavent data folder (e.g. `Data_YuDengLab/` folder). An example regression plot using `Data_model_construction_YuDengLab.csv` data is shown below.
+### Results and Plots
+The regression plots are located in the `Regression_plot_single_trial/` subfolder of the relevant data folder (e.g. `Data_YuDengLab/` folder). An example regression plot using the `Data_model_construction_YuDengLab.csv` data is shown below.
 
 ![Regression plot](/Data_YuDengLab/Regression_plot_single_trial/Regression_Data_YuDengLab_2.png "Example regression plot trained with *Data_model_construction_YuDengLab.csv* data.")
 
-The example plot of R2 score distribution for all trials will be stored directly in the relavent data folder (e.g. `Data_YuDengLab/` folder). An example R2 score distribution plot using `Data_model_construction_YuDengLab.csv` data is shown below with 50 trials. This example plot is stored in `R2_distribution_plot/` folder to for the sake of tidiness.
 
-![R2 distribution plot](/Data_YuDengLab/R2_distribution_plot/R2_distribution_of_50_trials_Data_YuDengLab.png "Example R2 distribution plot trained 100 times with *Data_model_construction_YuDengLab.csv* data.")
+The example plot of the R2 score distribution for all trials will be stored directly in the relevant data folder. An example R2 score distribution plot using the `Data_model_construction_YuDengLab.csv` data is shown below with 50 trials. This plot was generated before `Generate_motif.py` was developed. For the sake of tidiness, this example plot is stored in the `R2_distribution_plot/Without_motif_count/` folder.
+
+![R2 distribution plot](/Data_YuDengLab/R2_distribution_plot/Without_motif_count/R2_distribution_of_50_trials_Data_YuDengLab.png "Example R2 distribution plot trained 50 times with *Data_model_construction_YuDengLab.csv* data.")
+
+
+Before `Generate_motif.py` was fully developed for all isoforms, a trial training was carried out which shown that the R2 value increased slightly. An example plot of this improvement is stored in the `R2_distribution_plot/With_some_motif_count/` folder.
+
+![R2 distribution plot](/Data_YuDengLab/R2_distribution_plot/With_some_motif_count/R2_distribution_of_15_trials_Data_YuDengLab_with_some_TATA_BRE_DPE.png "Example R2 distribution plot trained 15 times with *Data_model_construction_YuDengLab.csv* data.")
+
+
+After `Generate_motif.py` was fully tested and implemented, the average R2 value after training for 100 times was increased by roughly 5%. The example plot below is stored in `R2_distribution_plot/With_all_motif_count/` folder.
+
+![R2 distribution plot](/Data_YuDengLab/R2_distribution_plot/With_all_motif_count/R2_distribution_of_100_trials_Data_YuDengLab_with_all_4_motifs.png "Example R2 distribution plot trained 100 times with *Data_model_construction_YuDengLab.csv* data.")
 
 
 ## Optimising *n_estimators*
@@ -56,7 +104,8 @@ The output of `Optimise_n_estimators.py` gives a plot of R2 against *n_estimator
 
 ![Optimisation of n_estimators plot](/Data_YuDengLab/Optimisation_n_estimators/Without_motif_count/Value_range_10_298_total_37_values.png "Example Optimisation of n_estimators plot by running 15 values from *n_estimators* = 10 to 298.")
 
-Another example output plot below shows how R2 varies with *n_estimators* ranged from 10 to 295 after the number of counts for motifs are implemented for training.
+
+Another example output plot below shows how R2 varies with *n_estimators* ranged from 10 to 295 after the number of counts for motifs are implemented for training. There was no significant improvement of the R2 value by selecting different values of *n_estimators*.
 
 ![Optimisation of n_estimators plot](/Data_YuDengLab/Optimisation_n_estimators/With_motif_count/Value_range_10_295_total_58_values.png "Example Optimisation of n_estimators plot by running 58 values from *n_estimators* = 10 to 295.")
 
