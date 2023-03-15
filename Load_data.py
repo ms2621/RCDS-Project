@@ -37,10 +37,10 @@ def load_data(filename):
                                      + ' consists a letter other than A G T C')
                 k += 1
             
-            x_l_count = gm.count_motif(line[1], x_l)
+            x_l = gm.count_motif(line[1], x_l)
            
-            x_l_count = np.array(x_l_count)
-            data.append(x_l_count)
+            x_l = np.array(x_l)
+            data.append(x_l)
             j += 1
     
     # randomise the data order
