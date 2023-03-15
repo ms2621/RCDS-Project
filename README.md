@@ -54,6 +54,10 @@ The output of `Optimise_n_estimators.py` gives a plot of R2 against *n_estimator
 #### YuDengLab
 https://github.com/YuDengLAB/Predictive-the-correlation-between-promoter-base-and-intensity-through-models-comparing
 
+## Note on Collaboration
+
+Members Seoho Shin and James Pullen looked at non-coding aspects such as data acquisition and results presentation. Member Christine Christine Zhao has been in charge of updating the GitHub repository whilst working on the coding aspect of the project alongside member Miguel Sanchez.
+
 #### EVMP
 https://github.com/Tiny-Snow/EVMP
 
