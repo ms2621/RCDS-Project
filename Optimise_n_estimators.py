@@ -26,14 +26,17 @@ cross_val_num = 5  # number of cross validation
 
 plt.figure(f'Training with {len(trial_values)} n_estimators values')
 
+data = ld.tokenisation(''+str(foldername)+'/'+str(datafile)+'.csv')
+
 for j in range(len(trial_values)):
     print(f'>>>>> [Trial {j+1}/{len(trial_values)}] Training with n_estimators = {trial_values[j]} ...')
 
     score_one_para = []
     for i in range(n):
-        train_feat, train_id = ld.load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
+        train_feat, train_id = ld.shuffle_data(data)
+        normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
+                                             / np.std(np.concatenate(train_feat)))
 
-        normalized_test_data = train_feat - np.mean(train_feat) / np.std(train_feat)
         X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id,
                                                             test_size=0.1, random_state=0)
 
