@@ -17,7 +17,7 @@ def f_1(x, A, B):
 foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
 
-n = 100  # train n times
+n = 500  # train n times
 score_list = []
 
 cro_val_indicator = False  # whether carrying out cross validation or not
@@ -25,12 +25,14 @@ cross_val_num = 5  # number of cross validation
 
 plot_individual = False  # whether plotting regression plot for each trial or not
 
-train_feat, train_id = ld.load_data(''+str(foldername)+'/'+str(datafile)+'.csv')
-normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
-                                     / np.std(np.concatenate(train_feat)))
+data = ld.tokenisation(''+str(foldername)+'/'+str(datafile)+'.csv')
 
 for i in range(n):
     print(f'>>>>> Training and testing trial {i+1}/{n} ...')
+
+    train_feat, train_id = ld.shuffle_data(data)
+    normalized_test_data = train_feat - (np.mean(np.concatenate(train_feat))
+                                         / np.std(np.concatenate(train_feat)))
 
     X_train, X_test, y_train, y_test = train_test_split(normalized_test_data, train_id, shuffle=True,
                                                         test_size=0.1, random_state=0)
