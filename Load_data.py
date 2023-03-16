@@ -8,9 +8,7 @@ import numpy as np
 import Generate_motif as gm
 
 
-def load_data(filename):
-    train_feat = []
-    train_id = []
+def tokenisation(filename):
     data = []
     with open(filename, 'r') as f:
         file = f.readlines()
@@ -42,7 +40,13 @@ def load_data(filename):
             x_l = np.array(x_l)
             data.append(x_l)
             j += 1
-    
+    return data
+
+
+def shuffle_data(data):
+    train_feat = []
+    train_id = []
+
     # randomise the data order
     random.shuffle(data)
 
