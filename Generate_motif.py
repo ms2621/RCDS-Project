@@ -74,7 +74,6 @@ def count_motif(seq_letters, seq_numbers=[]):
     seq_numbers.append(count)
 
     # BRE
-    count_all_bre = []
     bre_all = generate_bre()
 
     for c in bre_all:
@@ -89,7 +88,6 @@ def count_motif(seq_letters, seq_numbers=[]):
         seq_numbers.append(count)
 
     # DPE
-    count_all_dpe = []
     dpe_all = generate_dpe()
 
     for c in dpe_all:
@@ -104,7 +102,6 @@ def count_motif(seq_letters, seq_numbers=[]):
         seq_numbers.append(count)
 
     # Inr
-    count_all_inr = []
     inr_all = generate_inr()
 
     for c in inr_all:
@@ -119,22 +116,3 @@ def count_motif(seq_letters, seq_numbers=[]):
         seq_numbers.append(count)
     
     return seq_numbers
-
-
-# testing for above
-# foldername = 'Data_YuDengLab'
-# datafile = 'Data_model_construction_YuDengLab'
-
-# filename = ''+str(foldername)+'/'+str(datafile)+'.csv'
-
-# with open(filename, 'r') as f:
-#     file = f.readlines()
-#     j = 1
-#     for h in file:
-#         line = h.strip().split(',')
-#         test_seq = line[1]
-#         count_motif(test_seq, [])
-#         print(test_seq)
-#         j += 1
-#         if j > 10:
-#             break
