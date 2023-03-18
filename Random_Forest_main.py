@@ -17,7 +17,7 @@ def f_1(x, A, B):
 foldername = 'Data_YuDengLab'
 datafile = 'Data_model_construction_YuDengLab'
 
-n = 500  # train n times
+n = 5  # train n times
 score_list = []
 
 cro_val_indicator = False  # whether carrying out cross validation or not
@@ -80,6 +80,8 @@ if score_std < 0.01:
     score_std_label = 'Std < 0.01'
 else:
     score_std_label = f'Std = {score_std:.2f}'
+
+print(f'\nAvg R2 = {score_mean:.2f} \u00B1 {score_std:.2f}')
 
 plt.figure('R2 distribution')
 plt.plot(trial_num, np.zeros(len(trial_num))+score_mean, '-', lw=5, color='orange',
